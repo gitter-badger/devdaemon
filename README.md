@@ -19,3 +19,15 @@ https://github.com/twisted/twisted/blob/trunk/twisted/conch/manhole.py#L160
 * log activity, interruptions for each pomo
 * support multiple "projects" with environment variables in the client
 * create new issue if no issue id passed
+
+
+# Notes
+
+project is broken up into main components:
+
+* issues - issue tracker code
+* activity - anything time tracker related
+* notes - storing quick notes
+* timer - anything to do with timer stuff, like pomodoro
+* todo - task lists, generally smaller and less formal than issues
+* ui - anything for user interactions

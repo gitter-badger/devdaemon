@@ -1,0 +1,42 @@
+#!/usr/bin/env python2.7
+"""Pomodoro timer client."""
+
+import argparse
+from os.path import expanduser
+from twisted.internet import task 
+from devdaemon.utils.unixjsonrpc import UnixProxy
+
+
+def handle_result(result):
+    print result
+
+
+def start(proxy, args):
+    return proxy.callRemote("start", args.issue_id, args.message)
+
+
+def stop(proxy, args):
+    return proxy.callRemote("stop", args.message)
+
+
+@task.react
+def pomo(reactor):
+    parser = argparse.ArgumentParser(description='Run something against devdaemon.')
+    #parser.add_argument("command", type=str, help="Command to run.")
+    sp = parser.add_subparsers(help="Sub commands.")
+
+    start_parser = sp.add_parser("start", help="Start working on something.")
+    start_parser.add_argument("issue_id", type=str, help="The issue to start on.")
+    start_parser.add_argument("-m", "--message", type=str, help="Some notes to start with.")
+    start_parser.set_defaults(func=start)
+    
+    stop_parser = sp.add_parser("stop", help="Stop working on something.")
+    stop_parser.add_argument("-m", "--message", type=str, help="Some notes to stop with.")
+    stop_parser.set_defaults(func=stop)
+
+    pause_parser = sp.add_parser("pause", help="Pause work.")
+    
+    args = parser.parse_args() 
+    path = b"unix:path={}/.devdaemon.sock".format(expanduser("~"))
+    proxy = UnixProxy(path)
+    return args.func(proxy, args).addCallback(handle_result)
