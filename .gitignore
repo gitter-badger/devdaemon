@@ -54,4 +54,9 @@ coverage.xml
 docs/_build/
 
 # PyBuilder
+_trial_temp
 target/
+.venv
+twistd.pid
+
+dropin.cache
