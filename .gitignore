@@ -58,5 +58,5 @@ _trial_temp
 target/
 .venv
 twistd.pid
-
+*.swp
 dropin.cache
