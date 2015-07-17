@@ -1,6 +1,8 @@
 [![Stories in Ready](https://badge.waffle.io/dpnova/devdaemon.png?label=ready&title=Ready)](http://waffle.io/dpnova/devdaemon)
 
 # devdaemon
+
+[![Join the chat at https://gitter.im/dpnova/devdaemon](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/dpnova/devdaemon?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 Cross a pomodoro timer with your favourite task + todo + issue management software and make it all hacker friendly.
 # A dev daemon to help with things
 
